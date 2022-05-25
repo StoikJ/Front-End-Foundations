@@ -4,6 +4,22 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+(async () => {
+    async function getRepos(username) {
+      const url = `https://api.github.com/users/${username}/repos`;
+  
+      const response = await fetch(url);
+      const repositories = await response.json();
+  
+      return repositories;
+    }
+  
+    const reposi = await getRepos('stoikj');
+    reposi.forEach((repo) => {
+        document.getElementById("repos").innerHTML += "<li>" +`${repo.name}`+ "</li>" ;
+      });
+  })();
+
 (function($) {
 
 	var	$window = $(window),
